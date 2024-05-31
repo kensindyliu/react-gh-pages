@@ -1,23 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Header from './components/Header';
+import Banner from './components/Banner';
+import Gallery from './components/Gallery';
+import Footer from './components/Footer';
+import Button from './components/Button'; 
+import './style/reset.css';
+import './style/styles.css'; // You can create this file for global styles
 
-function App() {
+const App = () => {
+  const bannerProps = {
+    buttonText: 'Primary Button',
+    buttonType: 'primary'
+  };
+
+  const imageList = [
+    { src: "/imgs/movie1.jpeg", alt: "movie1" },
+    { src: "/imgs/movie2.jpeg", alt: "movie2" },
+    { src: "/imgs/movie3.jpeg", alt: "movie3" },
+    { src: "/imgs/movie4.jpeg", alt: "movie4" }
+  ];
+
+  const buttonProps = [
+    { type: 'btnPrimary', text: 'Primary' },
+    { type: 'btnSecondary', text: 'Secondary' },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Banner {...bannerProps} />
+      <Header />
+      <div className="button-container">
+        {buttonProps.map((props, index) => (
+          <Button key={index} {...props} />
+        ))}
+      </div>
+      <div className='gallery-container'>
+        <Gallery images={imageList} />
+      </div>
+      <Footer />
     </div>
   );
 }
